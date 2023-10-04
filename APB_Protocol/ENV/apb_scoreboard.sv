@@ -128,8 +128,10 @@ class apb_scoreboard extends uvm_scoreboard;
          ref_model_mem[mas_trans_h.PADDR] = mas_trans_h.PWDATA;
          `uvm_info(get_type_name(),$sformatf(" WRITE OPERATION ref_model_mem[%0h] = %0h\n",mas_trans_h.PADDR,ref_model_mem[mas_trans_h.PADDR]),UVM_DEBUG);
 
-         //checking the write trnsaction for the only b2b write transaction no read transaction
-         //if(cfg_h.is_active == UVM_ACTIVE)begin
+         //checking the write transaction for the only b2b write transaction no read transaction
+         //if the master DUT is connected then then there is no master driver
+         //so the uvm_pooll will not have any data so every transaction will be failed
+         if(!`DUT)begin
             `uvm_info(get_type_name(),$sformatf("mas_trans_h.PADDR = %0d",mas_trans_h.PADDR),UVM_HIGH);
             if(drv2sb_pool.exists(mas_trans_h.PADDR))begin
                `uvm_info(get_type_name(),"drv2eb_pool item exists",UVM_DEBUG);
@@ -152,7 +154,7 @@ class apb_scoreboard extends uvm_scoreboard;
                //add update here to write expected address
                `uvm_error(get_type_name(),$sformatf("WRITE FAILED!! || ADDRESS MISMATCH ACTUAL PADDR = %0d",mas_trans_h.PADDR));
            //write_data = get_global(mas_trans_h
-         //end
+         end //if
 
          //checking for the PSLVERR
          if(mas_trans_h.PSLVERR)begin

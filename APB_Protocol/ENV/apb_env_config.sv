@@ -3,35 +3,26 @@
 // Version:       v1
 // Developer:     Mayank
 // Project Name:  APB3 Protocol
-// Discription:   APB master config file 
+// Discription:   APB environment config file 
 /////////////////////////////////////////////////
 
 //
-// Class Description:
+// class Description:
 //
 //
-`ifndef APB_MASTER_CONFIG
-`define APB_MASTER_CONFIG
+`ifndef APB_ENV_CONFIG
+`define APB_ENV_CONFIG
 
 class apb_env_config extends uvm_object;
 
+   `uvm_object_utils(apb_env_config);
    //------------------------------------------
    // Data Members 
    //------------------------------------------  
 
-   //configure agent as active or passive   
-   uvm_active_passive_enum is_active = UVM_ACTIVE;
-
-   //number of agent in the environment
+   //To enable or disable the coverage
    //
-   int no_of_agents = 1;
-
-   // UVM Factory Registration Macro
-   //
-   `uvm_object_utils_begin(apb_env_config)
-     `uvm_field_enum(uvm_active_passive_enum,is_active,UVM_DEFAULT)
-     `uvm_field_int(no_of_agents,UVM_DEFAULT)
-   `uvm_object_utils_end
+   bit coverage = 1'b1;
 
    //------------------------------------------
    // Methods
@@ -43,4 +34,4 @@ class apb_env_config extends uvm_object;
    endfunction : new
   
 endclass : apb_env_config
-`endif //APB_MASTER_CONFIG
+`endif //APB_ENV_CONFIG

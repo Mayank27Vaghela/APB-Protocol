@@ -64,7 +64,7 @@ module apb_top;
    APB DUT(.PCLK(inf.PCLK),.PRESET(inf.PRESETn),.PSEL(inf.PSEL),.PWRITE(inf.PWRITE),.PENABLE(inf.PENABLE),.PADDR(inf.PADDR),.PWDATA(inf.PWDATA),.PRDATA(inf.PRDATA),.PREADY(inf.PREADY),.PSLVERR(inf.PSLVERR));
 */ 
 
-   bind  inf apb_assrtions asrt(PCLK,PRESETn,inf.PSEL,inf.PENABLE,inf.PWRITE,inf.PADDR,inf.PWDATA,inf.PRDATA,PREADY,PSLVERR);
+   bind  inf apb_assrtions asrt(inf.PCLK,inf.PRESETn,inf.PSEL,inf.PENABLE,inf.PWRITE,inf.PADDR,inf.PWDATA,inf.PRDATA,inf.PREADY,inf.PSLVERR);
 
    initial begin
       //Setting the interface

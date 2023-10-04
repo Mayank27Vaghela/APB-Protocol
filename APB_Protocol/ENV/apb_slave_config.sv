@@ -8,7 +8,6 @@
 //
 // Class Description:
 //
-//
 `ifndef APB_SLAVE_CONFIG
 `define APB_SLAVE_CONFIG
 
@@ -23,6 +22,12 @@ class apb_slave_config extends uvm_object;
    //number of agent in the environment   
    int no_of_agents = 1;
 
+   //salve 1 address range
+   bit[0:`ADDR_WIDTH-1]salve1_s = 8'd0;
+   bit[0:`ADDR_WIDTH-1]slave1_e = 8'd25;
+
+   bit[0:`ADDR_WIDTH-1]salve2_s;
+   bit[0:`ADDR_WIDTH-1]slave2_e;
    // UVM Factory Registration Macro
    //
    `uvm_object_utils_begin(apb_slave_config)

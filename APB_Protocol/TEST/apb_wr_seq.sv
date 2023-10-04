@@ -45,11 +45,14 @@ class apb_wr_seq extends uvm_sequence#(apb_master_trans);
             `uvm_fatal("W_SEQ","Randomization Failed");
          finish_item(trans_h);
 
+         //trans_h.print();
+
          trans_h = apb_master_trans::type_id::create("trans_h");
          start_item(trans_h);
          if(!trans_h.randomize() with {kind_e == READ;})
             `uvm_fatal("W_SEQ","Randomization Failed");
          finish_item(trans_h);
+         //trans_h.print();
       end
    endtask : body 
 

@@ -20,6 +20,7 @@
    `define APB_CLK_FREQ (1*(10**8)) //100Mhz 
    `define READY_TIMEOUT 10
    `define PASS_COUNT_FULL 0
+   `define DUT 0
    `define DRV_CB vif.DRV_MP.drv_cb
    `define MON_CB vif.DRV_MP.mon_cb
 

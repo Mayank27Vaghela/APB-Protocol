@@ -58,6 +58,7 @@ class apb_rerr_seq extends uvm_sequence#(apb_master_trans);
          if(!trans_h.randomize() with {kind_e == WRITE;})
             `uvm_fatal("W_SEQ","Randomization Failed");
          finish_item(trans_h);
+         //trans_h.print();
       end //repeat
 
       vif.PRESETn = 1'b0;
@@ -71,6 +72,7 @@ class apb_rerr_seq extends uvm_sequence#(apb_master_trans);
          if(!trans_h.randomize() with {kind_e == READ;})
             `uvm_fatal("W_SEQ","Randomization Failed");
          finish_item(trans_h);
+         //trans_h.print();
       end //repeat
    endtask : body 
 

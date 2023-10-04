@@ -56,6 +56,7 @@ package apb_pkg;
    `include "apb_subscriber.sv"
 
    //Environment and Testcases seuqences
+   `include "apb_env_config.sv"
    `include "apb_env.sv"
 
    //callback files

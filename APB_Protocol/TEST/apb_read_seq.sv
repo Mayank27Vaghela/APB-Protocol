@@ -44,6 +44,7 @@ class apb_read_seq extends uvm_sequence#(apb_master_trans);
          if(!trans_h.randomize() with {kind_e == READ;})
             `uvm_fatal("R_SEQ","Randomization Failed");
          finish_item(trans_h);
+         //trans_h.print();
       end //repeat
 
       //Inbetween  reset
@@ -57,6 +58,7 @@ class apb_read_seq extends uvm_sequence#(apb_master_trans);
          if(!trans_h.randomize() with {kind_e == READ;})
             `uvm_fatal("R_SEQ","Randomization Failed");
          finish_item(trans_h);
+         //trans_h.print();
       end //repeat
    endtask : body 
 

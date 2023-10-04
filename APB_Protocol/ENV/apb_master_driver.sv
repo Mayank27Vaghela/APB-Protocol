@@ -43,7 +43,8 @@ class apb_master_driver extends uvm_driver #(apb_master_trans);
 
    //Registaring the callback
    //
-   `uvm_register_cb(apb_master_driver,apb_master_drv_cb);
+   //`uvm_register_cb(apb_master_driver,apb_psel_cb);
+   //`uvm_register_cb(apb_master_driver,apb_enb_cb);
 
    //Taking uvm_pool to provide the write data and address to the scorebord
    //
@@ -151,13 +152,14 @@ class apb_master_driver extends uvm_driver #(apb_master_trans);
       //checking that if transaction is available then drive the control signals and data,
       //otherwise drive the default values of the signals
       if(req != null)begin
-      
+         `uvm_info(get_type_name(),$sformatf("\n%s",req.sprint()),UVM_MEDIUM); 
          //to avoid the one cycle delay while doing back to back transactions
          //$isunknown is used for if the initial reset is not given and the
          //tried to start a transaction
          if(vif.PSEL != 1 || ($isunknown(vif.PSEL)==1))begin
             @(posedge vif.PCLK)
             vif.PSEL <= 1'b1;
+            //`uvm_do_callbacks();
          end //if
          
          //checking the type of the transaction it is  read or write

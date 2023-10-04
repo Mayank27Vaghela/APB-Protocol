@@ -53,7 +53,7 @@ class apb_slave_ready_cb extends apb_slave_drv_cb;
          ready_0(1);
          ready_1(10); 
          ready_0(1);
-         ready_1(10); 
+         ready_1(11); 
          ready_0(1);
    endtask : ready_asrt
 

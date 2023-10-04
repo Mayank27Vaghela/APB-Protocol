@@ -11,7 +11,6 @@
 //
 //
 
-
 interface apb_assrtions(input logic PCLK,input logic PRESETn,input logic PSEL,input logic PENABLE,PWRITE,input logic[(`ADDR_WIDTH-1):0]PADDR,input logic[(`DATA_WIDTH-1):0]PWDATA,input logic[(`DATA_WIDTH-1):0]PRDATA,input logic PREADY,input logic PSLVERR);
    
    realtime time_period = 10ns;
@@ -38,7 +37,7 @@ interface apb_assrtions(input logic PCLK,input logic PRESETn,input logic PSEL,in
    property wr_wait_nowait;
       @(posedge PCLK)
       disable iff(!PRESETn)
-      $rose(PSEL) && !PENABLE && (PWRITE || !PWRITE) |=> $rose(PENABLE) ##[0:(`READY_TIMEOUT-1)] PREADY;
+      $rose(PSEL) && (!PENABLE) && (PWRITE || !PWRITE) |=> $rose(PENABLE) ##[0:(`READY_TIMEOUT-1)] PREADY;
    endproperty : wr_wait_nowait
     
    WR_CHECK:assert property(@(posedge PCLK)wr_wait_nowait)
@@ -56,7 +55,7 @@ interface apb_assrtions(input logic PCLK,input logic PRESETn,input logic PSEL,in
    else 
       `uvm_error("APB_ASSRTIONS","TIMEOUT FAILED!!\n");
 
-   //Asserion for b2b check when PENABLE is LOW then ching that PSEL is stable or not
+   //Asserion for b2b check when PENABLE is LOW then checking that PSEL is stable or not
    property b2b;
       @(posedge PCLK)
       disable iff(!PRESETn)
